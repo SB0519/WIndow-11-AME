@@ -18,6 +18,10 @@ https://support.microsoft.com/en-us/topic/windows-11-update-history-a19cd327-b57
 Windows Update Catolog
 https://www.catalog.update.microsoft.com/Search.aspx?
 
+Startisback link (Required and recommend installing before running script)
+
+https://www.startallback.com/
+
 Dolby ATMOS if needed put in c:\Dolby
 
 Microsoft.VCLibs.140.00_14.0.30704.0_x64__8wekyb3d8bbwe.Appx
