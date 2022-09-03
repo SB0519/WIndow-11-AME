@@ -31,7 +31,7 @@ goto menu
 	echo. 
 	echo     1. Install SSU (First)
 	echo     2. Install Cumative updste (Last) 
-	echo     3. Install Dolby or other APPS (Optional)
+	echo     3. Install (Optional)
 	echo     4. Run Pre-Amelioration         
 	echo     5. Run Post-Amelioration
 	echo     6. User Permissions
@@ -424,12 +424,11 @@ goto :menu
 :Dolby
 cls
 echo 
-echo     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-echo     !! Please disable your internet connection by right clicking and choose disable !!
-echo     !! and then plugging in the cable for wifi users just skip this step.           !!
-echo     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+echo     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+echo     !! This will disable all networks in your system !!
+echo     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 pause
-ncpa.cpl
+wmic path win32_networkadapter where PhysicalAdapter=True call disable
 pause
 pause
 cls
@@ -442,33 +441,37 @@ pause
 pause
 cls
 PowerShell -Command "Get-AppxPackage *Microsoft.WindowsStore* | Remove-AppxPackage"
-powershell -command "add-AppxPackage -path "c:\Dolby\Microsoft.VCLibs.140.00_14.0.30704.0_x64__8wekyb3d8bbwe.Appx""
-powershell -command "add-AppxPackage -path "c:\Dolby\Microsoft.VCLibs.140.00_14.0.30704.0_x86__8wekyb3d8bbwe.Appx""
-powershell -command "add-AppxPackage -path "c:\Dolby\Microsoft.NET.Native.Framework.1.7_1.7.27413.0_x64__8wekyb3d8bbwe.appx""
-powershell -command "add-AppxPackage -path "c:\Dolby\Microsoft.NET.Native.Framework.1.7_1.7.27413.0_x86__8wekyb3d8bbwe.appx""
-powershell -command "add-AppxPackage -path "c:\Dolby\Microsoft.NET.Native.Framework.2.1_2.1.27427.0_x64__8wekyb3d8bbwe.appx""
-powershell -command "add-AppxPackage -path "c:\Dolby\Microsoft.NET.Native.Framework.2.1_2.1.27427.0_x86__8wekyb3d8bbwe.appx""
-powershell -command "add-AppxPackage -path "c:\Dolby\Microsoft.NET.Native.Framework.2.2_2.2.29512.0_x64__8wekyb3d8bbwe.Appx""
-powershell -command "add-AppxPackage -path "c:\Dolby\Microsoft.NET.Native.Framework.2.2_2.2.29512.0_x86__8wekyb3d8bbwe.Appx""
-powershell -command "add-AppxPackage -path "c:\Dolby\Microsoft.NET.Native.Runtime.1.7_1.7.27422.0_x64__8wekyb3d8bbwe.Appx""
-powershell -command "add-AppxPackage -path "c:\Dolby\Microsoft.NET.Native.Runtime.1.7_1.7.27422.0_x86__8wekyb3d8bbwe.Appx""
-powershell -command "add-AppxPackage -path "c:\Dolby\Microsoft.NET.Native.Runtime.2.1_2.1.26424.0_x64__8wekyb3d8bbwe.Appx""
-powershell -command "add-AppxPackage -path "c:\Dolby\Microsoft.NET.Native.Runtime.2.1_2.1.26424.0_x86__8wekyb3d8bbwe.Appx""
-powershell -command "add-AppxPackage -path "c:\Dolby\Microsoft.NET.Native.Runtime.2.2_2.2.28604.0_x64__8wekyb3d8bbwe.Appx""
-powershell -command "add-AppxPackage -path "c:\Dolby\Microsoft.NET.Native.Runtime.2.2_2.2.28604.0_x86__8wekyb3d8bbwe.Appx""
-powershell -command "add-AppxPackage -path "c:\Dolby\Microsoft.Services.Store.Engagement_10.0.19011.0_x64__8wekyb3d8bbwe.appx""
-powershell -command "add-AppxPackage -path "c:\Dolby\Microsoft.Services.Store.Engagement_10.0.19011.0_x86__8wekyb3d8bbwe.Appx""
-powershell -command "add-AppxPackage -path "c:\Dolby\DolbyLaboratories.DolbyAccess_3.13.249.0_x64__rz1tebttyb220.Msix""
+powershell -command "add-AppxPackage -path "c:\Dolby\Microsoft.VCLibs*.Appx""
+powershell -command "add-AppxPackage -path "c:\Dolby\Microsoft.NET.Native.Framework.1.7*.appx""
+powershell -command "add-AppxPackage -path "c:\Dolby\Microsoft.NET.Native.Framework.2.1*.appx""
+powershell -command "add-AppxPackage -path "c:\Dolby\Microsoft.NET.Native.Framework.2.2*.Appx""
+powershell -command "add-AppxPackage -path "c:\Dolby\Microsoft.NET.Native.Runtime.1.7*.Appx""
+powershell -command "add-AppxPackage -path "c:\Dolby\Microsoft.NET.Native.Runtime.2.1*.Appx""
+powershell -command "add-AppxPackage -path "c:\Dolby\Microsoft.NET.Native.Runtime.2.2*.Appx""
+powershell -command "add-AppxPackage -path "c:\Dolby\Microsoft.Services.Store.Engagement*.appx""
+powershell -command "add-AppxPackage -path "c:\Dolby\DolbyLaboratories.DolbyAccess*.Msix""
 cls
-echo     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-echo     !! Please renable your internet connection by right clicking the connetion and enable !!
-echo     !! and open the newly installed apps once loaded right click to disable again or      !!
-echo     !! wifi users disable connectiom and continue on to next step.                        !!  
-echo     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-pause
-ncpa.cpl
+echo     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+echo     !! Please connect your network cable and DON'T USE WIFI  !!
+echo     !! Dolby Access will launch and connect to the internet  !!
+echo     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 pause
 pause
+pause
+wmic path win32_networkadapter where PhysicalAdapter=True call enable
+timeout /t 5 /nobreak
+explorer.exe shell:AppsFolder\DolbyLaboratories.DolbyAccess_rz1tebttyb220!App
+timeout /t 10 /nobreak
+wmic path win32_networkadapter where PhysicalAdapter=True call disable
+CLS
+echo     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+echo     !! Please disconnect your network cable and wait !!
+echo     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+timeout /t 60 /nobreak
+pause
+pause
+pause
+wmic path win32_networkadapter where PhysicalAdapter=True call enable
 CLS
 goto :menu
 
