@@ -17,7 +17,7 @@ read -p "To continue press [ENTER], or Ctrl-C to exit"
 title_bar() {
 	clear
 	echo "╔═══════════════════════════════════════════════════════════╗"
-	echo "║             AMEliorate Windows 11 22H2      03.59.00      ║"
+	echo "║             AMEliorate Windows 11 22H2      09.21.22      ║"
 	echo "║  Give credit to the original team they are better than me ║"
 	echo "╚═══════════════════════════════════════════════════════════╝"
 }
@@ -364,9 +364,9 @@ echo "0.0.0.0       20.52.64.200" >> "Windows/System32/drivers/etc/hosts"
 echo "0.0.0.0       20.49.97.26" >> "Windows/System32/drivers/etc/hosts"
 echo "0.0.0.0       20.189.173.15" >> "Windows/System32/drivers/etc/hosts"
 echo "0.0.0.0       52.167.85.21" >> "Windows/System32/drivers/etc/hosts"
-echo "0.0.0.0       13.107.21.239" >> "Windows/System32/drivers/etc/hosts"
-
-
+echo "0.0.0.0       40.83.240.146" >> "Windows/System32/drivers/etc/hosts"
+echo "0.0.0.0       13.64.180.106" >> "Windows/System32/drivers/etc/hosts"
+echo "0.0.0.0       52.137.108.250" >> "Windows/System32/drivers/etc/hosts"
 
 chmod +x remove.sh
 
