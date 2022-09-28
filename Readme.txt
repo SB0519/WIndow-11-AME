@@ -1,4 +1,4 @@
-I made some changes to the script.     (Updated to work with the latest WIndows 11 22h2 Beta)
+I made some changes to the script.     (Updated to work with the latest public release of WIndows 11 22h2)
 
 1. I added the ability to install the latest security patch from script which can be downloaded from the update catalog site you can get the latest KB from the latest windows 11 update history site.
 
