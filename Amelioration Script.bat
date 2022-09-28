@@ -25,13 +25,13 @@ goto menu
 :menu
 	cls
 	echo.
-	echo  :: WINDOWS 11 AME SETUP SCRIPT Version 21.00.00
+	echo  :: WINDOWS 11 AME SETUP SCRIPT Version 09.21.22
 	echo. 
 	echo     This script gives you a list-style overview to execute many commands
 	echo. 
 	echo     1. Install SSU (First)
 	echo     2. Install Cumative updste (Last) 
-	echo     3. Install (Optional)
+	echo     3. Install Dolby Atmos (Optional)
 	echo     4. Run Pre-Amelioration         
 	echo     5. Run Post-Amelioration
 	echo     6. User Permissions
@@ -352,6 +352,8 @@ goto menu
 
 :programs
 cls
+wmic path win32_networkadapter where PhysicalAdapter=True call enable
+cls
 	echo.
 	echo  :: Checking For Internet Connection...
 	echo.
@@ -424,13 +426,11 @@ goto :menu
 :Dolby
 cls
 echo 
-echo     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-echo     !! This will disable all networks in your system !!
-echo     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+echo     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+echo     !! This will disable all connections on your system !!
+echo     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 pause
 wmic path win32_networkadapter where PhysicalAdapter=True call disable
-pause
-pause
 cls
 echo     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 echo     !! This will install the dependencies for Dolby and posibly other store apps   !!
@@ -464,14 +464,14 @@ explorer.exe shell:AppsFolder\DolbyLaboratories.DolbyAccess_rz1tebttyb220!App
 timeout /t 10 /nobreak
 wmic path win32_networkadapter where PhysicalAdapter=True call disable
 CLS
-echo     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-echo     !! Please disconnect your network cable and wait !!
-echo     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-timeout /t 60 /nobreak
+echo     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+echo     !! Run Post-Amelioration to re-enable connections after doing the linux step !!
+echo     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+:: timeout /t 60 /nobreak
 pause
 pause
-pause
-wmic path win32_networkadapter where PhysicalAdapter=True call enable
+:: pause
+:: wmic path win32_networkadapter where PhysicalAdapter=True call enable
 CLS
 goto :menu
 
