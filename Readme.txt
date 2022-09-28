@@ -6,8 +6,8 @@ I made some changes to the script.     (Updated to work with the latest WIndows 
 
 (Startisback)Select the following options 
 -(Welcome) >> "Kinda 10"
--(Start Menu) >> Visual style "Default" and optionally choose the other settings you would like you want.
--(Taskbar) >> Visual style "Default" and optionally choose the other settings you would like you want.
+-(Start Menu) >> Visual style "Default" and optionally choose the other settings you would like to use.
+-(Taskbar) >> Visual style "Default" and optionally choose the other settings you would like you to use.
 
 -This script gives you the ability to install Dolby Atmos automatically most may not need but maybe helpful if you have a TV or surround sound to support it to enable it right click the sound icon from taskbar highlight sound setup and choose Dolby Atmos and you should see Dolby Atmos on you your TV info. There maybe minor bugs but works well for the most part. If you have to mute and unmute to get audio working for instance watching youtube try updating your TV's firmware fixed on my LG CX TV.
 
