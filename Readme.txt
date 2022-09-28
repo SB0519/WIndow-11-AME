@@ -1,6 +1,7 @@
 I made some changes to the script.     (Updated to work with the latest public release of WIndows 11 22h2)
 
 1. I added the ability to install the latest security patch from script which can be downloaded from the update catalog site you can get the latest KB from the latest windows 11 update history site.
+-In root of C:\
 
 2. You must install Startisallback, this is a trial but a few dollars is way better than paying hundreds for a OS that spies on you due to it breaking the stock UI but works well, use the following setting to get the best out of 11.
 
