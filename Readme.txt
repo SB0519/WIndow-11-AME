@@ -4,7 +4,7 @@ I made some changes to the script.     (Updated to work with the latest WIndows 
 
 2. You must install Startisallback, this is a trial but a few dollars is way better than paying hundreds for a OS that spies on you due to it breaking the stock UI but works well, use the following setting to get the best out of 11.
 
-(Startisback)Sellect the following options 
+(Startisback)Select the following options 
 -(Welcome) >> "Kinda 10"
 -(Start Menu) >> Visual style "Default" and optionally choose the other settings you would like you want.
 -(Taskbar) >> Visual style "Default" and optionally choose the other settings you would like you want.
