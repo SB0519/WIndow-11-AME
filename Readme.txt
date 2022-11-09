@@ -5,7 +5,7 @@ I made some changes to the script.     (Updated to work with the latest public r
 
 2. You must install Startisallback, this is a trial but a few dollars is way better than paying hundreds for a OS that spies on you due to it breaking the stock UI but works well, use the following setting to get the best out of 11.
 
-(Startisback)Select the following options 
+(Startisback)Select the following options (11.sh and Amelioration Script.bat)
 -(Welcome) >> "Kinda 10"
 -(Start Menu) >> Visual style "Default" and optionally choose the other settings you would like to use.
 -(Taskbar) >> Visual style "Default" and optionally choose the other settings you would like you to use.
@@ -34,39 +34,7 @@ https://www.startallback.com/
 
 I don't know if anyone uses Dolby ATMOS just message me and I may provide a google drive link in the future.
 
+_______________________________________________________________________________________________________________
 
-Dolby ATMOS if needed put in c:\Dolby
+I will be uploading an updated script for people that want to install store apps and can even login to obtaine licensed apps. What will happem is you'll install Windows 22H2 and then run the ame option 1 which will disable auto update from installing updates through a group policy and then reg keys to prevent your store login to be shared in Windows like in the settings app and to prevent the store from automatically installing app except teams but it will be uninstalled later with the script. I have managed to remove some .dll files with the Linux script and using netstat -t & -b to verify that there aren't any pernament connections. I would say the original method is probably safer however I think this new script is fairly a great option. The following apps that was tested was Netflix app, Spotify app, Razer controller app, Dolby Unbound with license retrieval, Dolby Atmos, and Qobuz. I will also offer an option to strip out MS Edge from both versions of the scripts.
 
-Microsoft.VCLibs.140.00_14.0.30704.0_x64__8wekyb3d8bbwe.Appx
-
-Microsoft.VCLibs.140.00_14.0.30704.0_x86__8wekyb3d8bbwe.Appx
-
-Microsoft.NET.Native.Framework.1.7_1.7.27413.0_x64__8wekyb3d8bbwe.appx
-
-Microsoft.NET.Native.Framework.1.7_1.7.27413.0_x86__8wekyb3d8bbwe.appx
-
-Microsoft.NET.Native.Framework.2.1_2.1.27427.0_x64__8wekyb3d8bbwe.appx
-
-Microsoft.NET.Native.Framework.2.1_2.1.27427.0_x86__8wekyb3d8bbwe.appx
-
-Microsoft.NET.Native.Framework.2.2_2.2.29512.0_x64__8wekyb3d8bbwe.Appx
-
-Microsoft.NET.Native.Framework.2.2_2.2.29512.0_x86__8wekyb3d8bbwe.Appx
-
-Microsoft.NET.Native.Runtime.1.7_1.7.27422.0_x64__8wekyb3d8bbwe.Appx
-
-Microsoft.NET.Native.Runtime.1.7_1.7.27422.0_x86__8wekyb3d8bbwe.Appx
-
-Microsoft.NET.Native.Runtime.2.1_2.1.26424.0_x64__8wekyb3d8bbwe.Appx
-
-Microsoft.NET.Native.Runtime.2.1_2.1.26424.0_x86__8wekyb3d8bbwe.Appx
-
-Microsoft.NET.Native.Runtime.2.2_2.2.28604.0_x64__8wekyb3d8bbwe.Appx
-
-Microsoft.NET.Native.Runtime.2.2_2.2.28604.0_x86__8wekyb3d8bbwe.Appx
-
-Microsoft.Services.Store.Engagement_10.0.19011.0_x64__8wekyb3d8bbwe.appx
-
-Microsoft.Services.Store.Engagement_10.0.19011.0_x86__8wekyb3d8bbwe.Appx
-
-DolbyLaboratories.DolbyAccess_3.14.67.0_x64__rz1tebttyb220.Msix
