@@ -36,5 +36,18 @@ I don't know if anyone uses Dolby ATMOS just message me and I may provide a goog
 
 _______________________________________________________________________________________________________________
 
-I will be uploading an updated script for people that want to install store apps and can even login to obtaine licensed apps. What will happen is you'll install Windows 22H2 and then run the ame option 1 which will disable auto update from installing updates through a group policy and then reg keys to prevent your store login to be shared in Windows like in the settings app and to prevent the store from automatically installing app except teams but it will be uninstalled later with the script. I have managed to remove some .dll files with the Linux script and using netstat -t & -b to verify that there aren't any pernament connections. I would say the original method is probably safer however I think this new script is fairly a great option. The following apps that was tested was Netflix app, Spotify app, Razer controller app, Dolby Unbound with license retrieval, Dolby Atmos, and Qobuz. I will also offer an option to strip out MS Edge from both versions of the scripts.
+11s.sh and  AME store apps.bat is for installing windows store apps and connecting to the internet without Microsoft updating and installing store apps automatically. You can even loging in to the store to retrieve the license for apps you purchased, apps tested DTS Unbound, Dolby access, Netflix, Qobuz, Razer controller app, Amazon Music, Spotify, and Candy Crush. Some apps may still not work like Minecraft and Roblox and will probably never work.
 
+1. Install Windows 11 without a internet connection.
+2. Install the latest Cumulative Update from Windows 11 22H2 update history & the update catalog.
+   (Don't install the preview Builds.)
+3. Run AME store apps.bat as admin and choose option 1 and then reboot with option 5
+   (Before connecting to the internet) Important!
+4. Connect to the intenet and install the store apps you want a lot will work but some may not but open all before proceeding to next step.
+    (You may see a bunch of apps popup in start buy they're not being installed.)
+5. Install StartAllBack
+6. Run the script again and choose option 2 Run Pre-Amelioration.
+7. If you don't want edge put edge.bat at root and the Pre-Amelioration will run it automatically
+   (Powershell will popup once it closes you can close the extra command prompt window.)
+8. Set the permissions as usual with the original script and reboot.
+9. Boot into Linux and run 11s.sh once done reboot and test what apps work.
