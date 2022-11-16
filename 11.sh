@@ -17,7 +17,7 @@ read -p "To continue press [ENTER], or Ctrl-C to exit"
 title_bar() {
 	clear
 	echo "╔═══════════════════════════════════════════════════════════╗"
-	echo "║             AMEliorate Windows 11 22H2      03.59.00      ║"
+	echo "║             AMEliorate Windows 11 22H2      11.15.22      ║"
 	echo "║  Give credit to the original team they are better than me ║"
 	echo "╚═══════════════════════════════════════════════════════════╝"
 }
@@ -173,6 +173,13 @@ echo 'rm -rf "Program Files (x86)/Windows Defender"' | cat - remove.sh > temp &&
 echo 'rm -rf "Program Files (x86)/Windows Mail"' | cat - remove.sh > temp && mv temp remove.sh
 echo 'rm -rf "Program Files (x86)/Windows Media Player"' | cat - remove.sh > temp && mv temp remove.sh
 echo 'rm -rf Windows/System32/wua*' | cat - remove.sh > temp && mv temp remove.sh
+echo 'rm -rf Windows/System32/wpnservice.dll' | cat - remove.sh > temp && mv temp remove.sh
+echo 'rm -rf Windows/System32/qmgr.dll' | cat - remove.sh > temp && mv temp remove.sh
+echo 'rm -rf /mnt/Windows/System32/wlidsvc.dll' | cat - remove.sh > temp && mv temp remove.sh
+echo 'rm -rf Windows/System32/cloud*' | cat - remove.sh > temp && mv temp remove.sh
+echo 'rm -rf Windows/SysWOW64/cloud*' | cat - remove.sh > temp && mv temp remove.sh
+echo 'rm -rf Windows/System32/Cloud*' | cat - remove.sh > temp && mv temp remove.sh
+echo 'rm -rf Windows/SysWOW64/Cloud*' | cat - remove.sh > temp && mv temp remove.sh
 echo 'rm -rf Windows/System32/wups*' | cat - remove.sh > temp && mv temp remove.sh
 echo 'rm -rf Windows/SystemApps/*CloudExperienceHost*' | cat - remove.sh > temp && mv temp remove.sh
 echo 'rm -rf Windows/SystemApps/*ContentDeliveryManager*' | cat - remove.sh > temp && mv temp remove.sh
@@ -249,10 +256,7 @@ echo 'rm -rf Program\ Files/WindowsApps/microsoft.windowscommunicationsapps*' | 
 echo 'rm -rf Program\ Files/WindowsApps/Microsoft.WindowsFeedbackHub*' | cat - remove.sh > temp && mv temp remove.sh
 echo 'rm -rf Program\ Files/WindowsApps/Microsoft.WindowsMaps*' | cat - remove.sh > temp && mv temp remove.sh
 echo 'rm -rf Program\ Files/WindowsApps/Microsoft.WindowsSoundRecorder*' | cat - remove.sh > temp && mv temp remove.sh
-echo 'rm -rf Program\ Files/WindowsApps/Microsoft.XboxGameOverlay*' | cat - remove.sh > temp && mv temp remove.sh
-echo 'rm -rf Program\ Files/WindowsApps/Microsoft.XboxIdentityProvider*' | cat - remove.sh > temp && mv temp remove.sh
-echo 'rm -rf Program\ Files/WindowsApps/Microsoft.XboxSpeechToTextOverlay*' | cat - remove.sh > temp && mv temp remove.sh
-echo 'rm -rf Program\ Files/WindowsApps/Microsoft.Xbox.TCUI*' | cat - remove.sh > temp && mv temp remove.sh
+echo 'rm -rf Program\ Files/WindowsApps/Microsoft.Xbox*' | cat - remove.sh > temp && mv temp remove.sh
 echo 'rm -rf Program\ Files/WindowsApps/Microsoft.YourPhone*' | cat - remove.sh > temp && mv temp remove.sh
 echo 'rm -rf Program\ Files/WindowsApps/Microsoft.ZuneMusic*' | cat - remove.sh > temp && mv temp remove.sh
 echo 'rm -rf Program\ Files/WindowsApps/Microsoft.ZuneVideo*' | cat - remove.sh > temp && mv temp remove.sh
@@ -260,12 +264,10 @@ echo 'rm -rf Program\ Files/WindowsApps/Microsoft.549981C3F5F10*' | cat - remove
 echo 'rm -rf Program\ Files/WindowsApps/Microsoft.DesktopAppInstaller*' | cat - remove.sh > temp && mv temp remove.sh
 echo 'rm -rf Program\ Files/WindowsApps/Microsoft.HEIFImageExtension*' | cat - remove.sh > temp && mv temp remove.sh
 echo 'rm -rf Program\ Files/WindowsApps/Microsoft.MicrosoftEdge*' | cat - remove.sh > temp && mv temp remove.sh
-echo 'rm -rf Program\ Files/WindowsApps/Microsoft.XboxGamingOverlay*' | cat - remove.sh > temp && mv temp remove.sh
 echo 'rm -rf Program\ Files/WindowsApps/Clipchamp.Clipchamp*' | cat - remove.sh > temp && mv temp remove.sh
 echo 'rm -rf Program\ Files/WindowsApps/Microsoft.SecHealthUI*' | cat - remove.sh > temp && mv temp remove.sh
 echo 'rm -rf Program Files/WindowsApps/Microsoft.SecHealthUI*' | cat - remove.sh > temp && mv temp remove.sh
-#echo 'rm -rf Program Files/WindowsApps/Microsoft.Services.Store.Engagement_10.0.19011.0_x64__8wekyb3d8bbwe' | cat - remove.sh > temp && mv temp remove.sh
-#echo 'rm -rf Program Files/WindowsApps/Microsoft.Services.Store.Engagement_10.0.19011.0_x86__8wekyb3d8bbwe' | cat - remove.sh > temp && mv temp remove.sh
+echo 'rm -rf Program\ Files/WindowsApps/Microsoft.Services.Store.Engagement*' | cat - remove.sh > temp && mv temp remove.sh
 echo 'rm -rf Program\ Files/WindowsApps/Microsoft.StorePurchaseApp*' | cat - remove.sh > temp && mv temp remove.sh
 echo 'rm -rf Program\ Files/WindowsApps/Microsoft.Todos*' | cat - remove.sh > temp && mv temp remove.sh
 echo 'rm -rf Program\ Files/WindowsApps/Deleted' | cat - remove.sh > temp && mv temp remove.sh
@@ -364,9 +366,9 @@ echo "0.0.0.0       20.52.64.200" >> "Windows/System32/drivers/etc/hosts"
 echo "0.0.0.0       20.49.97.26" >> "Windows/System32/drivers/etc/hosts"
 echo "0.0.0.0       20.189.173.15" >> "Windows/System32/drivers/etc/hosts"
 echo "0.0.0.0       52.167.85.21" >> "Windows/System32/drivers/etc/hosts"
-echo "0.0.0.0       13.107.21.239" >> "Windows/System32/drivers/etc/hosts"
-
-
+echo "0.0.0.0       40.83.240.146" >> "Windows/System32/drivers/etc/hosts"
+echo "0.0.0.0       13.64.180.106" >> "Windows/System32/drivers/etc/hosts"
+echo "0.0.0.0       52.137.108.250" >> "Windows/System32/drivers/etc/hosts"
 
 chmod +x remove.sh
 
@@ -392,7 +394,3 @@ echo "Done."
 sync
 title_bar
 echo "You may now reboot into Windows"
-
-echo "This will restore clipsvc.dll for Windows store apps to work if didn't install Dolby or store apps CANCEL"
-read -p "To continue press [ENTER], or Ctrl-C to CANCEL"
-cp -fa --preserve=all "AME_Backup/Windows/System32/ClipSVC.dll" "Windows/System32/ClipSVC.dll"
