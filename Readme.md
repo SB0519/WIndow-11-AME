@@ -10,22 +10,10 @@ I made some changes to the script.     (Updated to work with the latest public r
 -(Taskbar) >> Visual style "Default" and optionally choose the other settings you would like you to use.
 
 Some helpful links
-https://ameliorated.info/documentation.html
-https://www.youtube.com/watch?v=YTL0i5XzS7k
+https://github.com/SB0519/WIndow-11-AME/blob/main/Useful_Links.md5
 
-
-Windows 11 and 21H2 update history Wouldn't recommend intalling preview versions
-https://support.microsoft.com/en-us/topic/windows-11-update-history-a19cd327-b57f-44b9-84e0-26ced7109ba9
-
-Windows 11 and 22H2 update history Wouldn't recommend intalling preview versions
-https://support.microsoft.com/en-us/topic/windows-11-version-22h2-update-history-ec4229c3-9c5f-4e75-9d6d-9025ab70fcce
-
-Windows Update Catolog
-https://www.catalog.update.microsoft.com/Search.aspx?
 
 Startisback link (Required and recommend installing before running script)
-
-https://www.startallback.com/
 
 If you forget to install startisback before running script Press CTRL+SHFT+ESC and choose run new task and locate the file and install it.
 
