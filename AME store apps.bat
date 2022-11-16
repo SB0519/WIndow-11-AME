@@ -1,5 +1,5 @@
 :: Windows 10 Pre/Post-AME Script
-:: v3.21.00.00
+:: v11.16.22
 
 @echo off
 pushd "%~dp0"
@@ -25,7 +25,7 @@ goto menu
 :menu
 	cls
 	echo.
-	echo  :: WINDOWS 11 AME SETUP SCRIPT Version 09.21.22
+	echo  :: WINDOWS 11 AME SETUP SCRIPT Version 11.16.22
 	echo.
 	echo     This script gives you a list-style overview to execute many commands
 	echo.
@@ -81,10 +81,10 @@ if %drive%==exit GOTO menu
 
 CLS
 echo.
-echo  :: Disabling Windows Update
+echo  :: Setting Windows Update to manual
 timeout /t 2 /nobreak > NUL
 net stop wuauserv
-sc config wuauserv start= disabled
+sc config wuauserv start= demand
 
 CLS
 echo.
@@ -224,6 +224,11 @@ reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v "N
 reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\CompatTelRunner.exe" /v Debugger /t REG_SZ /d "%windir%\System32\taskkill.exe" /f
 reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\DeviceCensus.exe" /v Debugger /t REG_SZ /d "%windir%\System32\taskkill.exe" /f
 
+::DIsabling Additional Services Add 2 to fix
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\cbdhsvc" /v "Start" /t REG_DWORD /d 4 /f 
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\CDPSvc" /v "Start" /t REG_DWORD /d 4 /f 
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\CDPUserSvc" /v "Start" /t REG_DWORD /d 4 /f 
+
 :: Disable SMBv1. Effectively mitigates EternalBlue, popularly known as WannaCry.
 PowerShell -Command "Set-SmbServerConfiguration -EnableSMB1Protocol $false -Force"
 sc config lanmanworkstation depend= bowser/mrxsmb20/nsi
@@ -307,7 +312,6 @@ PowerShell -Command "Get-AppxPackage *Teams* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *SoundRecorder* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *SecHealthUI* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *MicrosoftOfficeHub* | Remove-AppxPackage"
-::PowerShell -Command "Get-AppxPackage *MicrosoftEdge* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *GamingApp* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *PowerAutomate* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *Paint* | Remove-AppxPackage"
@@ -342,6 +346,7 @@ cls
 echo.
 echo  :: removing MicrosoftEdge
 start c:\edge.bat
+cls
 
 :: Disabling One Drive
 cls
