@@ -1,5 +1,5 @@
 :: Windows 10 Pre/Post-AME Script
-:: v3.21.00.00
+:: v11.15.22
 
 @echo off
 pushd "%~dp0"
@@ -25,32 +25,26 @@ goto menu
 :menu
 	cls
 	echo.
-	echo  :: WINDOWS 11 AME SETUP SCRIPT Version 09.21.22
-	echo. 
+	echo  :: WINDOWS 11 AME SETUP SCRIPT Version 11.15.22
+	echo.
 	echo     This script gives you a list-style overview to execute many commands
-	echo. 
-	echo     1. Install SSU (First)
-	echo     2. Install Cumative updste (Last) 
-	echo     3. Install Dolby Atmos (Optional)
-	echo     4. Run Pre-Amelioration         
-	echo     5. Run Post-Amelioration
-	echo     6. User Permissions
-	echo     7. Restart System
-	echo. 
+	echo.
+	echo     1. Run Pre-Amelioration
+	echo     2. Run Post-Amelioration
+	echo     3. User Permissions
+	echo     4. Restart System
+	echo.
 	echo  :: Type a 'number' and press ENTER
 	echo  :: Type 'exit' to quit
 	echo.
-	
+
 	set /P menu=
-		if %menu%==1 GOTO installSSU
-		if %menu%==2 GOTO installCCU
-		if %menu%==3 GOTO Dolby
-		if %menu%==4 GOTO preame
-		if %menu%==5 GOTO programs
-		if %menu%==6 GOTO user
-		if %menu%==7 GOTO reboot
+		if %menu%==1 GOTO preame
+		if %menu%==2 GOTO programs
+		if %menu%==3 GOTO user
+		if %menu%==4 GOTO reboot
 		if %menu%==exit GOTO EOF
-		
+
 		else (
 		cls
 	echo.
@@ -62,7 +56,7 @@ goto menu
 		pause > NUL
 		goto menu
 		)
-		
+
 :preame
 cls
 :: DotNet 3.5 Installation from install media
@@ -85,10 +79,10 @@ if %drive%==exit GOTO menu
 
 CLS
 echo.
-echo  :: Disabling Windows Update
+echo  :: setting Windows Update to manual
 timeout /t 2 /nobreak > NUL
 net stop wuauserv
-sc config wuauserv start= disabled
+sc config wuauserv start= demand
 
 CLS
 echo.
@@ -195,8 +189,48 @@ sc config wscsvc start= disabled
 sc config XblAuthManager start= disabled
 sc config XblGameSave start= disabled
 sc config XboxNetApiSvc start= disabled
+sc config WpnUserService_3ba24 start= disabled
 net stop wlidsvc
 sc config wlidsvc start= disabled
+:: From https://github.com/TheWorldOfPC/Windows11-Debloat-Privacy-Guide
+sc config WerSvc start= disabled
+sc config OneSyncSvc start= disabled
+sc config OneSyncSvc_435ba start= disabled
+sc config MessagingService start= disabled
+sc config wercplsupport start= disabled
+sc config PcaSvc start= disabled
+sc config wlidsvc start=demand
+sc config wisvc start= disabled
+sc config diagsvc start= disabled
+sc config shpamsvc start= disabled
+sc config TermService start= disabled
+sc config UmRdpService start= disabled
+sc config SessionEnv start= disabled
+sc config TroubleshootingSvc start= disabled
+sc config diagnosticshub.standardcollector.service start= disabled
+reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Siuf\Rules" /v "NumberOfSIUFInPeriod" /t REG_DWORD /d 0 /f
+reg delete "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Siuf\Rules" /v "PeriodInNanoSeconds" /f
+reg add "HKLM\SYSTEM\ControlSet001\Control\WMI\AutoLogger\AutoLogger-Diagtrack-Listener" /v Start /t REG_DWORD /d 0 /f
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\AppCompat" /v AITEnable /t REG_DWORD /d 0 /f
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\AppCompat" /v DisableInventory /t REG_DWORD /d 1 /f
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\AppCompat" /v DisablePCA /t REG_DWORD /d 1 /f
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\AppCompat" /v DisableUAR /t REG_DWORD /d 1 /f
+reg add "HKLM\SOFTWARE\Policies\Microsoft\MicrosoftEdge\PhishingFilter" /v "EnabledV9" /t REG_DWORD /d 0 /f
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\System" /v "EnableSmartScreen" /t REG_DWORD /d 0 /f
+reg add "HKCU\Software\Microsoft\Internet Explorer\PhishingFilter" /v "EnabledV9" /t REG_DWORD /d 0 /f
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v "NoRecentDocsHistory" /t REG_DWORD /d 1 /f
+reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\CompatTelRunner.exe" /v Debugger /t REG_SZ /d "%windir%\System32\taskkill.exe" /f
+reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\DeviceCensus.exe" /v Debugger /t REG_SZ /d "%windir%\System32\taskkill.exe" /f
+
+::DIsabling Additional Services
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\cbdhsvc" /v "Start" /t REG_DWORD /d 4 /f > NUL 2>&1
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\cbdhsvc_30c25" /v "Start" /t REG_DWORD /d 4 /f > NUL 2>&1
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\CDPSvc" /v "Start" /t REG_DWORD /d 4 /f > NUL 2>&1
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\CDPUserSvc" /v "Start" /t REG_DWORD /d 4 /f > NUL 2>&1
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\CDPUserSvc_30c25" /v "Start" /t REG_DWORD /d 4 /f > NUL 2>&1
+
+::Test Disable Background Tasks Infrastructure Service
+::reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\BrokerInfrastructure" /v "Start" /t REG_DWORD /d 4 /f > NUL 2>&1
 
 :: Disable SMBv1. Effectively mitigates EternalBlue, popularly known as WannaCry.
 PowerShell -Command "Set-SmbServerConfiguration -EnableSMB1Protocol $false -Force"
@@ -277,10 +311,10 @@ PowerShell -Command "Get-AppxPackage *ScreenSketch* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *windowscommunications* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *WindowsTerminal* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *Todos* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *Teams* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *SoundRecorder* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *SecHealthUI* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *MicrosoftOfficeHub* | Remove-AppxPackage"
-PowerShell -Command "Get-AppxPackage *MicrosoftEdge* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *GamingApp* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *PowerAutomate* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *Paint* | Remove-AppxPackage"
@@ -300,12 +334,19 @@ PowerShell -Command "Get-AppxPackage *Photos* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *Solitaire* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *WindowsSoundRecorder* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *xbox* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *TCUI* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *windowscommunicationsapps* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *zune* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *WindowsMaps* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *Phone* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *Store* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *AppInstaller* | Remove-AppxPackage"
+
+:: removing MicrosoftEdge From https://github.com/ChrisTitusTech/winutil
+cls
+echo.
+echo  :: removing MicrosoftEdge
+start c:\edge.bat
 
 :: Disabling One Drive
 cls
@@ -315,17 +356,17 @@ timeout /t 2 /nobreak > NUL
 
 set x86="%SYSTEMROOT%\System32\OneDriveSetup.exe"
 set x64="%SYSTEMROOT%\SysWOW64\OneDriveSetup.exe"
- 
+
 taskkill /f /im OneDrive.exe > NUL 2>&1
 ping 127.0.0.1 -n 5 > NUL 2>&1
- 
+
 if exist %x64% (
 %x64% /uninstall
 ) else (
 %x86% /uninstall
 )
 ping 127.0.0.1 -n 8 > NUL 2>&1
- 
+
 rd "%USERPROFILE%\OneDrive" /Q /S > NUL 2>&1
 rd "C:\OneDriveTemp" /Q /S > NUL 2>&1
 rd "%LOCALAPPDATA%\Microsoft\OneDrive" /Q /S > NUL 2>&1
@@ -347,7 +388,6 @@ bcdedit /set {default} bootmenupolicy legacy
 
 :: Disable Hibernation to make NTFS accessable outside of Windows
 powercfg /h off
-
 goto menu
 
 :programs
@@ -376,103 +416,29 @@ cls
 		echo  :: Installing Packages...
 		echo.
 		timeout /t 1 /nobreak > NUL
-				
+
 		@powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" && SET PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin
 
 
 		:: Add/Remove packages here. Use chocolatey to 'search' for packages matching a term to get the proper name or head over to https://chocolatey.org/packages
 
 		:: Recommended optional packages include: libreoffice steam adobeair ffmpeg mpv youtube-dl directx cygwin babun transmission-qt audacity cdrtfe obs syncthing keepass
-		
-		@powershell -NoProfile -ExecutionPolicy Bypass -Command "choco install -y --force --allow-empty-checksums firefox vlc 7zip jpegview vcredist-all directx notepadplusplus oldcalc"
 
+		@powershell -NoProfile -ExecutionPolicy Bypass -Command "choco install -y --force --allow-empty-checksums firefox"
+		@powershell -NoProfile -ExecutionPolicy Bypass -Command "choco install -y --force --allow-empty-checksums vlc"
+		@powershell -NoProfile -ExecutionPolicy Bypass -Command "choco install -y --force --allow-empty-checksums 7zip"
+		@powershell -NoProfile -ExecutionPolicy Bypass -Command "choco install -y --force --allow-empty-checksums imageglass --version=8.1.4.18"
+		@powershell -NoProfile -ExecutionPolicy Bypass -Command "choco install -y --force --allow-empty-checksums vcredist-all"
+		@powershell -NoProfile -ExecutionPolicy Bypass -Command "choco install -y --force --allow-empty-checksums directx"
+		@powershell -NoProfile -ExecutionPolicy Bypass -Command "choco install -y --force --allow-empty-checksums notepadplusplus"
+		@powershell -NoProfile -ExecutionPolicy Bypass -Command "choco install -y --force --allow-empty-checksums oldcalc"
+		@powershell -NoProfile -ExecutionPolicy Bypass -Command "choco install -y --force --allow-empty-checksums psexec"
 
 :: reg add "HKEY_CLASSES_ROOT\Directory\shell\Open with MPV" /v icon /t REG_SZ /d "C:\\ProgramData\\chocolatey\\lib\\mpv.install\\tools\\mpv-document.ico" /f
 :: reg add "HKCR\Directory\shell\Open with MPV\command" /v @ /t REG_SZ /d "mpv \"%1\"" /f
 
 :: This might fix problem down the road aka the mouse won't click on objects
 powercfg /h off
-goto :post
-
-:installSSU
-cls
-cd \.
-mkdir SSU
-PowerShell -Command "expand -F:* *.msu \ssu"
-cd \ssu
-move SSU*.*.cab c:\
-cd\.
-rmdir /q /s ssu
-ren *.cab ssu.cab
-PowerShell -Command "dism /online /add-package /packagepath=C:\ssu.cab"
-del ssu.cab
-echo !!!!!!!!!!!!!!!!!!!!
-echo !! PC will reboot !!
-echo !!!!!!!!!!!!!!!!!!!!
-pause
-shutdown -r
-goto :menu
-
-:installCCU
-cls
-cd\.
-del ccu.cab
-ren *.msu ccu.cab
-PowerShell -Command "dism /online /add-package /packagepath=C:\ccu.cab"
-pause
-cls
-goto :menu
-
-:Dolby
-cls
-echo 
-echo     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-echo     !! This will disable all connections on your system !!
-echo     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-pause
-wmic path win32_networkadapter where PhysicalAdapter=True call disable
-cls
-echo     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-echo     !! This will install the dependencies for Dolby and posibly other store apps   !!
-echo     !! and will also uninstall windows store app. So when the internet is restored !!
-echo     !! you can open the Dolby apps so they will work properly.                     !!
-echo     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-pause
-pause
-cls
-PowerShell -Command "Get-AppxPackage *Microsoft.WindowsStore* | Remove-AppxPackage"
-powershell -command "add-AppxPackage -path "c:\Dolby\Microsoft.VCLibs*.Appx""
-powershell -command "add-AppxPackage -path "c:\Dolby\Microsoft.NET.Native.Framework.1.7*.appx""
-powershell -command "add-AppxPackage -path "c:\Dolby\Microsoft.NET.Native.Framework.2.1*.appx""
-powershell -command "add-AppxPackage -path "c:\Dolby\Microsoft.NET.Native.Framework.2.2*.Appx""
-powershell -command "add-AppxPackage -path "c:\Dolby\Microsoft.NET.Native.Runtime.1.7*.Appx""
-powershell -command "add-AppxPackage -path "c:\Dolby\Microsoft.NET.Native.Runtime.2.1*.Appx""
-powershell -command "add-AppxPackage -path "c:\Dolby\Microsoft.NET.Native.Runtime.2.2*.Appx""
-powershell -command "add-AppxPackage -path "c:\Dolby\Microsoft.Services.Store.Engagement*.appx""
-powershell -command "add-AppxPackage -path "c:\Dolby\DolbyLaboratories.DolbyAccess*.Msix""
-cls
-echo     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-echo     !! Please connect your network cable and DON'T USE WIFI  !!
-echo     !! Dolby Access will launch and connect to the internet  !!
-echo     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-pause
-pause
-pause
-wmic path win32_networkadapter where PhysicalAdapter=True call enable
-timeout /t 5 /nobreak
-explorer.exe shell:AppsFolder\DolbyLaboratories.DolbyAccess_rz1tebttyb220!App
-timeout /t 10 /nobreak
-wmic path win32_networkadapter where PhysicalAdapter=True call disable
-CLS
-echo     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-echo     !! Run Post-Amelioration to re-enable connections after doing the linux step !!
-echo     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-:: timeout /t 60 /nobreak
-pause
-pause
-:: pause
-:: wmic path win32_networkadapter where PhysicalAdapter=True call enable
-CLS
 goto :menu
 
 :: Open User preferences to configure administrator/user permissions
@@ -486,7 +452,7 @@ timeout /t 2 /nobreak > NUL
 net user administrator /active:yes
 netplwiz
 
-goto post
+goto :menu
 
 :reboot
 	cls
