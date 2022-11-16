@@ -1,4 +1,4 @@
-#!/bin/bash
+t#!/bin/bash
 
 clear
 echo "                 ╔═══════════════╗"
@@ -17,7 +17,7 @@ read -p "To continue press [ENTER], or Ctrl-C to exit"
 title_bar() {
 	clear
 	echo "╔═══════════════════════════════════════════════════════════╗"
-	echo "║             AMEliorate Windows 11 22H2      09.21.22      ║"
+	echo "║             AMEliorate Windows 11 22H2      11.16.22      ║"
 	echo "║  Give credit to the original team they are better than me ║"
 	echo "╚═══════════════════════════════════════════════════════════╝"
 }
@@ -174,6 +174,9 @@ echo 'rm -rf "Program Files (x86)/Windows Mail"' | cat - remove.sh > temp && mv 
 echo 'rm -rf "Program Files (x86)/Windows Media Player"' | cat - remove.sh > temp && mv temp remove.sh
 echo 'rm -rf Windows/System32/wua*' | cat - remove.sh > temp && mv temp remove.sh
 echo 'rm -rf Windows/System32/wpnservice.dll' | cat - remove.sh > temp && mv temp remove.sh
+echo 'rm -rf Windows/System32/qmgr.dll' | cat - remove.sh > temp && mv temp remove.sh
+# wlidsvc is important for retrieving license
+#echo 'rm -rf /mnt/Windows/System32/wlidsvc.dll' | cat - remove.sh > temp && mv temp remove.sh
 echo 'rm -rf Windows/System32/cloud*' | cat - remove.sh > temp && mv temp remove.sh
 echo 'rm -rf Windows/SysWOW64/cloud*' | cat - remove.sh > temp && mv temp remove.sh
 echo 'rm -rf Windows/System32/Cloud*' | cat - remove.sh > temp && mv temp remove.sh
