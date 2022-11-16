@@ -1,3 +1,5 @@
+<meta name="google-site-verification" content="Guvcpri3VY7BhPelKDT-Bd82vkQtRn_k36gpWPcbfTo" />
+
 I made some changes to the script.     (Updated to work with the latest public release of WIndows 11 22h2)
 
 1. You must install Startisallback, this is a trial but a few dollars is way better than paying hundreds for a OS that spies on you due to it breaking the stock UI but works well, use the following setting to get the best out of 11.
@@ -44,7 +46,3 @@ ________________________________________________________________________________
    (Powershell will popup once it closes you can close the extra command prompt window.)
 8. Set the permissions as usual with the original script and reboot.
 9. Boot into Linux and run 11s.sh once done reboot and test what apps work.
-
-
-
-<meta name="google-site-verification" content="Guvcpri3VY7BhPelKDT-Bd82vkQtRn_k36gpWPcbfTo" />
