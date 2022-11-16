@@ -46,4 +46,5 @@ ________________________________________________________________________________
 9. Boot into Linux and run 11s.sh once done reboot and test what apps work.
 
 
-google-site-verification: googlefd77949bd1d589af.html
+
+<meta name="google-site-verification" content="googlefd77949bd1d589af">
