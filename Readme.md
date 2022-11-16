@@ -1,4 +1,4 @@
-
+<meta name="google-site-verification" content="Guvcpri3VY7BhPelKDT-Bd82vkQtRn_k36gpWPcbfTo" />
 
 I made some changes to the script. (Updated to work with the latest public release of WIndows 11 22h2) 
 (11.sh and Amelioration Script.bat) 
@@ -37,7 +37,8 @@ If you forget to install startisback before running script Press CTRL+SHFT+ESC a
     (You may see a bunch of apps popup in start buy they're not being installed.)
 5. Install StartAllBack
 6. Run the script again and choose option 2 Run Pre-Amelioration.
-7. If you don't want edge put edge.bat at root and the Pre-Amelioration will run it automatically (Powershell will popup once it closes you can close the extra command prompt window.)
-8. Set the permissions as usual with the original script and reboot.
-9. Boot into Linux and run 11s.sh once done reboot and test what apps work.
+7. If you don't want edge put edge.bat at root and the Pre-Amelioration will run it automatically.
+   (Powershell will popup once it closes you can close the extra command prompt window.)
+9. Set the permissions as usual with the original script and reboot.
+10. Boot into Linux and run 11s.sh once done reboot and test what apps work.
 
