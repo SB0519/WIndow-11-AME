@@ -44,3 +44,6 @@ ________________________________________________________________________________
    (Powershell will popup once it closes you can close the extra command prompt window.)
 8. Set the permissions as usual with the original script and reboot.
 9. Boot into Linux and run 11s.sh once done reboot and test what apps work.
+
+
+google-site-verification: googlefd77949bd1d589af.html
