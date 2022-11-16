@@ -1,4 +1,4 @@
-<meta name="google-site-verification" content="googlefd77949bd1d589af">
+<meta name="google-site-verification" content="Guvcpri3VY7BhPelKDT-Bd82vkQtRn_k36gpWPcbfTo" />
 
 I made some changes to the script.     (Updated to work with the latest public release of WIndows 11 22h2)
 
