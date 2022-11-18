@@ -35,7 +35,7 @@ If you forget to install startisback before running script Press CTRL+SHFT+ESC a
 
 --------------------------------------------------------------------------------------------------------------------------------------------------
 
-11s.sh and AME store apps.bat is for installing windows store apps and connecting to the internet without Microsoft updating and installing store apps automatically. You can even loging in to the store to retrieve the license for apps you purchased, apps tested DTS Unbound, Dolby access, Netflix, Qobuz, Razer controller app, Amazon Music, Spotify, and Candy Crush. Some apps may still not work like Minecraft and Roblox and will probably never work.
+11s.sh and AME store apps.bat is for installing windows store apps and connecting to the internet without Microsoft updating and installing store apps automatically. You can even login to the store to retrieve the license for apps you purchased, apps tested DTS Unbound, Dolby access, Netflix, Qobuz, Razer controller app, Amazon Music, Spotify, and Candy Crush. Some apps may still not work like Minecraft and Roblox and will probably never work.
 
 1. Install Windows 11 without a internet connection.
 2. Install the latest Cumulative Update from Windows 11 22H2 update history & the update catalog. 
@@ -49,4 +49,5 @@ If you forget to install startisback before running script Press CTRL+SHFT+ESC a
    (Powershell will popup once it closes you can close the extra command prompt window.)
 9. Set the permissions as usual with the original script and reboot.
 10. Boot into Linux and run 11s.sh once done reboot and test what apps work.
-
+ 
+Warning you will see signs of Windows updating but nothing to be worried about, its mainly store apps and Windows defender nothing serious relelating to the core system components and many of these apps will be uninstalled anyways but investigate in the future.
