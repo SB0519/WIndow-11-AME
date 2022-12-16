@@ -1,5 +1,5 @@
 :: Windows 10 Pre/Post-AME Script
-:: v11.16.22
+:: v12.16.22
 
 @echo off
 pushd "%~dp0"
@@ -25,7 +25,7 @@ goto menu
 :menu
 	cls
 	echo.
-	echo  :: WINDOWS 11 AME SETUP SCRIPT Version 11.16.22
+	echo  :: WINDOWS 11 AME SETUP SCRIPT Version 12.16.22
 	echo.
 	echo     This script gives you a list-style overview to execute many commands
 	echo.
@@ -220,7 +220,7 @@ reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\AppCompat" /v Di
 reg add "HKLM\SOFTWARE\Policies\Microsoft\MicrosoftEdge\PhishingFilter" /v "EnabledV9" /t REG_DWORD /d 0 /f
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\System" /v "EnableSmartScreen" /t REG_DWORD /d 0 /f
 reg add "HKCU\Software\Microsoft\Internet Explorer\PhishingFilter" /v "EnabledV9" /t REG_DWORD /d 0 /f
-reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v "NoRecentDocsHistory" /t REG_DWORD /d 1 /f
+::reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v "NoRecentDocsHistory" /t REG_DWORD /d 1 /f
 reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\CompatTelRunner.exe" /v Debugger /t REG_SZ /d "%windir%\System32\taskkill.exe" /f
 reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\DeviceCensus.exe" /v Debugger /t REG_SZ /d "%windir%\System32\taskkill.exe" /f
 
@@ -299,52 +299,16 @@ RED ADD "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\TimeZoneInformation
 :: Removing AppXPackages, the ModernUI Apps, including Cortana
 cls
 echo.
-echo  :: Removing AppXPackages
+echo  :: Removing remaining AppXPackages
 echo.
-PowerShell -Command "Get-AppxPackage *StickyNotes* | Remove-AppxPackage"
-PowerShell -Command "Get-AppxPackage *Clipchamp* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *549981C3F5F10* | Remove-AppxPackage"
-PowerShell -Command "Get-AppxPackage *ScreenSketch* | Remove-AppxPackage"
-PowerShell -Command "Get-AppxPackage *windowscommunications* | Remove-AppxPackage"
-PowerShell -Command "Get-AppxPackage *WindowsTerminal* | Remove-AppxPackage"
-PowerShell -Command "Get-AppxPackage *Todos* | Remove-AppxPackage"
-PowerShell -Command "Get-AppxPackage *Teams* | Remove-AppxPackage"
-PowerShell -Command "Get-AppxPackage *SoundRecorder* | Remove-AppxPackage"
-PowerShell -Command "Get-AppxPackage *SecHealthUI* | Remove-AppxPackage"
-PowerShell -Command "Get-AppxPackage *MicrosoftOfficeHub* | Remove-AppxPackage"
-PowerShell -Command "Get-AppxPackage *GamingApp* | Remove-AppxPackage"
-PowerShell -Command "Get-AppxPackage *PowerAutomate* | Remove-AppxPackage"
-PowerShell -Command "Get-AppxPackage *Paint* | Remove-AppxPackage"
-PowerShell -Command "Get-AppxPackage *Note* | Remove-AppxPackage"
-PowerShell -Command "Get-AppxPackage *FeedbackHub* | Remove-AppxPackage"
-PowerShell -Command "Get-AppxPackage *Caclulator* | Remove-AppxPackage"
-PowerShell -Command "Get-AppxPackage *Alarms* | Remove-AppxPackage"
-PowerShell -Command "Get-AppxPackage *GetHelp* | Remove-AppxPackage"
-PowerShell -Command "Get-AppxPackage *Microsoft.* | Remove-AppxPackage"
-PowerShell -Command "Get-AppxPackage *Getstarted* | Remove-AppxPackage"
-PowerShell -Command "Get-AppxPackage *WindowsCamera* | Remove-AppxPackage"
-PowerShell -Command "Get-AppxPackage *bing* | Remove-AppxPackage"
-PowerShell -Command "Get-AppxPackage *MicrosoftOfficeHub* | Remove-AppxPackage"
-PowerShell -Command "Get-AppxPackage *people* | Remove-AppxPackage"
-PowerShell -Command "Get-AppxPackage *WindowsPhone* | Remove-AppxPackage"
-PowerShell -Command "Get-AppxPackage *Photos* | Remove-AppxPackage"
-PowerShell -Command "Get-AppxPackage *Solitaire* | Remove-AppxPackage"
-PowerShell -Command "Get-AppxPackage *WindowsSoundRecorder* | Remove-AppxPackage"
-PowerShell -Command "Get-AppxPackage *xboxG* | Remove-AppxPackage"
-PowerShell -Command "Get-AppxPackage *xboxS* | Remove-AppxPackage"
-PowerShell -Command "Get-AppxPackage *xbox.* | Remove-AppxPackage"
-PowerShell -Command "Get-AppxPackage *TCUI* | Remove-AppxPackage"
-PowerShell -Command "Get-AppxPackage *windowscommunicationsapps* | Remove-AppxPackage"
-PowerShell -Command "Get-AppxPackage *zune* | Remove-AppxPackage"
-PowerShell -Command "Get-AppxPackage *WindowsMaps* | Remove-AppxPackage"
-PowerShell -Command "Get-AppxPackage *Phone* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *Store* | Remove-AppxPackage"
-PowerShell -Command "Get-AppxPackage *AppInstaller* | Remove-AppxPackage"
 
 :: removing MicrosoftEdge From https://github.com/ChrisTitusTech/winutil
 cls
 echo.
 echo  :: removing MicrosoftEdge
+echo.
 start c:\edge.bat
 cls
 
@@ -431,7 +395,6 @@ cls
 		@powershell -NoProfile -ExecutionPolicy Bypass -Command "choco install -y --force --allow-empty-checksums vcredist-all"
 		@powershell -NoProfile -ExecutionPolicy Bypass -Command "choco install -y --force --allow-empty-checksums directx"
 		@powershell -NoProfile -ExecutionPolicy Bypass -Command "choco install -y --force --allow-empty-checksums notepadplusplus"
-		@powershell -NoProfile -ExecutionPolicy Bypass -Command "choco install -y --force --allow-empty-checksums oldcalc"
 		@powershell -NoProfile -ExecutionPolicy Bypass -Command "choco install -y --force --allow-empty-checksums psexec"
 
 :: reg add "HKEY_CLASSES_ROOT\Directory\shell\Open with MPV" /v icon /t REG_SZ /d "C:\\ProgramData\\chocolatey\\lib\\mpv.install\\tools\\mpv-document.ico" /f
@@ -448,6 +411,9 @@ echo !! and remove the dependacies to automatically !!
 echo !!               bloat apps                    !!
 echo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 taskkill /f /im explorer.exe
+cls
+echo .
+echo :: Changing Registry Settings
 reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\OneSyncSvc" /v Start /t REG_DWORD /d 4 /f > NUL 2>&1
 reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\OneSyncSvc_435ba" /v Start /t REG_DWORD /d 4 /f > NUL 2>&1
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "NoConnectedUser" /t REG_DWORD /d 1 /f > NUL 2>&1
@@ -478,13 +444,63 @@ reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\ContentDeli
 reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v SoftLandingEnabled /t REG_DWORD /d 0 /f > NUL 2>&1
 reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v SubscribedContent-338389Enabled /t REG_DWORD /d 0 /f > NUL 2>&1
 reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v SystemPaneSuggestionsEnabled /t REG_DWORD /d 0 /f > NUL 2>&1
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DriverSearching" /v DriverUpdateWizardWuSearchEnabled /t REG_DWORD /d 0 /f > NUL 2>&1
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v ExcludeWUDriversInQualityUpdate /t REG_DWORD /d 1 /f > NUL 2>&1
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender" /v DisableAntiSpyware /t REG_DWORD /d 1 /f > NUL 2>&1
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection" /v DisableBehaviorMonitoring /t REG_DWORD /d 1 /f > NUL 2>&1
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection" /v DisableOnAccessProtection /t REG_DWORD /d 1 /f > NUL 2>&1
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection" /v DisableScanOnRealtimeEnable /t REG_DWORD /d 1 /f > NUL 2>&1
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsStore" /v AutoDownload /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsStore" /v SearchOrderConfig /t REG_DWORD /d 0 /f > NUL 2>&1
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\DriverSearching" /v SearchOrderConfig /t REG_DWORD /d 0 /f > NUL 2>&1
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\DriverSearching" /v SearchOrderConfig /t REG_DWORD /d 0 /f > NUL 2>&1
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\CloudContent" /v DisableWindowsConsumerFeatures /t REG_DWORD /d 1 /f > NUL 2>&1
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\UserProfileEngagement" /v ScoobeSystemSettingEnabled /t REG_DWORD /d 0 /f > NUL 2>&1
 REG DELETE "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager\CreativeEvents" /f > NUL 2>&1
 REG DELETE "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager\Renderers" /f > NUL 2>&1
 REG DELETE "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager\Subscriptions" /f > NUL 2>&1
 REG DELETE "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager\Health" /f > NUL 2>&1
-pause
+cls
+echo .
+echo  :: Removing AppXPackages, the ModernUI Apps, including Cortana
+echo .
+PowerShell -Command "Get-AppxPackage *Alarms* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *bing* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *Calculator* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *Clipchamp* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *FeedbackHub* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *GamingApp* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *GetHelp* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *Getstarted* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *MicrosoftOfficeHub* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *Note* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *Paint* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *people* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *Phone* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *Photos* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *PowerAutomate* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *QuickAssist* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *ScreenSketch* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *SecHealthUI* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *Solitaire* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *SoundRecorder* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *StickyNotes* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *TCUI* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *Teams* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *Todos* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *WindowsCamera* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *windowscommunications* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *WindowsMaps* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *WindowsPhone* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *WindowsSoundRecorder* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *WindowsTerminal* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *xbox.* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *xboxG* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *xboxS* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *zune* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *AppInstaller* | Remove-AppxPackage"
 CLS
-goto menu
+goto reboot
 
 :: Open User preferences to configure administrator/user permissions
 :user
