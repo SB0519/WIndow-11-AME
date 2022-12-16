@@ -9,9 +9,9 @@ You must install Startisallback, this is a trial but a few dollars is way better
 
 (Startisback)
  Select the following options 
- -(Welcome) >> "Kinda 10" 
- -(Start Menu) >> Visual style "Default" and optionally choose the other settings you would like to use. 
- -(Taskbar) >> Visual style "Default" and optionally choose the other settings you would like you to use.
+ 1. (Welcome) >> "Kinda 10" 
+ 2. (Start Menu) >> Visual style "Default" and optionally choose the other settings you would like to use. 
+ 3. (Taskbar) >> Visual style "Default" and optionally choose the other settings you would like you to use.
 
 Some helpful links 
   
