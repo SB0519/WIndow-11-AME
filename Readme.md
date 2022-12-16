@@ -1,7 +1,9 @@
 <meta name="google-site-verification" content="Guvcpri3VY7BhPelKDT-Bd82vkQtRn_k36gpWPcbfTo" />
 
 I made some changes to the script. (Updated to work with the latest public release of WIndows 11 22h2) 
-(11.sh and Amelioration Script.bat) 
+(11.sh and Amelioration Script.bat)
+
+I would also recommend installing Windows Pro as gpedit is in that version of Windows for either script.
 
 You must install Startisallback, this is a trial but a few dollars is way better than paying hundreds for a OS that spies on you due to it breaking the stock UI but works well, use the following setting to get the best out of 11.
 
