@@ -53,3 +53,17 @@ If you forget to install startisback before running script Press CTRL+SHFT+ESC a
 10. Boot into Linux and run 11s.sh once done reboot and test what apps work.
  
 Warning you will see signs of Windows updating but nothing to be worried about, its mainly store apps and Windows defender nothing serious relelating to the core system components and many of these apps will be uninstalled anyways but investigate in the future.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+For both options you will need Startisback.
+
+If you want to install the latest security update
+
+1. Download it from links provided on top from the change for 21H2 and 22H2.
+2. Disable internet connection.
+2. Boot into Linux and do "sudo ./restore.sh" at root of windows install partition.
+3. Boot into windows and install update by doulble clicking and acknowledging prompts.
+4. Once update completes and reboots goto start type winver and hit enter
+   verify in second line starting with version and very last numbers (OS Build 00000.XXX).
+5. Boot back into Linux and "sudo ./remove.sh" once complete reboot.
+6. Reenable internet connection.
