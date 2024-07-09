@@ -1,9 +1,16 @@
 <meta name="google-site-verification" content="Guvcpri3VY7BhPelKDT-Bd82vkQtRn_k36gpWPcbfTo" />
 
-I made some changes to the script. (Updated to work with the latest public release of WIndows 11 22h2) 
-(11.sh and Amelioration Script.bat)
-
-I would also recommend installing Windows Pro as gpedit is in that version of Windows for either script.
+I have have made major updates in the last 2 years but haven't updated them due to the fact no one cares. 
+(11s.sh and AME store apps.bat)
+Linux shell script updates up to 24H2 preview.
+- Rewrote 11s.sh got the backup down to under 300mb's and is now compressed.
+- Added more IP's to block.
+- rewrote the restore script to extract required update files.
+- Script now cleans uneeded files required for script to run.
+Windows Bacth script
+- Added a lot of registry keys.
+- commented out notepad++ as it holds up the script during installation
+I would also recommend installing Windows Pro for group policies.
 
 You must install Startisallback, this is a trial but a few dollars is way better than paying hundreds for a OS that spies on you due to it breaking the stock UI but works well, use the following setting to get the best out of 11.
 
@@ -42,7 +49,7 @@ If you forget to install startisback before running script Press CTRL+SHFT+ESC a
 1. Install Windows 11 without a internet connection.
 2. Install the latest Cumulative Update from Windows 11 22H2 update history & the update catalog. 
      (Don't install the preview Builds.)
-3. Run AME store apps.bat as admin and choose option 1 and then reboot with option 5 (Before connecting to the internet) Important!
+3. Run AME store apps.bat as admin and choose option 1 and then reboot (Before connecting to the internet) Important!
 4. Connect to the intenet and install the store apps you want a lot will work but some may not but open all before proceeding to next step. 
     (You may see a bunch of apps popup in start buy they're not being installed.)
 5. Install StartAllBack
