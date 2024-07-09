@@ -1,5 +1,5 @@
 :: Windows 10 Pre/Post-AME Script
-:: v12.16.22
+:: v04.08.24
 
 @echo off
 pushd "%~dp0"
@@ -25,13 +25,13 @@ goto menu
 :menu
 	cls
 	echo.
-	echo  :: WINDOWS 11 AME SETUP SCRIPT Version 12.16.22
+	echo  :: WINDOWS 11 AME SETUP SCRIPT Version 07.08.24
 	echo.
 	echo     This script gives you a list-style overview to execute many commands
 	echo.
-	echo     1. Install Store Apps (Optional)
-	echo     2. Run Pre-Amelioration
-	echo     3. Run Post-Amelioration
+	echo     1. Run first
+	echo     2. Pre-Amelioration	
+	echo     3. Post Amelioration
 	echo     4. User Permissions
 	echo     5. Restart System
 	echo.
@@ -41,7 +41,7 @@ goto menu
 
 	set /P menu=
 		if %menu%==1 GOTO store
-		if %menu%==2 GOTO preame
+		if %menu%==2 GOTO preame		
 		if %menu%==3 GOTO programs
 		if %menu%==4 GOTO user
 		if %menu%==5 GOTO reboot
@@ -166,7 +166,50 @@ reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\AppHost" /v ContentEvalu
 reg delete "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Device Metadata" /f
 
 :: New Control Panel cleanup
-reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v SettingsPageVisibility /t REG_SZ /d "showonly:defaultapps;display;nightlight;sound;powersleep;batterysaver;batterysaver-usagedetails;batterysaver-settings;multitasking;about;bluetooth;connecteddevices;printers;mousetouchpad;devices-touchpad;typing;pen;autoplay;usb;network-status;network-cellular;network-wifi;network-wificalling;network-wifisettings;network-ethernet;network-dialup;netowrk-vpn;network-airplanemode;network-mobilehotspot;datausage;network-proxy;personalization-background;colors;lockscreen;themes;taskbar;easeofaccess-narrator;easeofaccess-magnifier;easeofaccess-highcontrast;easeofaccess-closedcaptioning;easeofaccess-keyboard;easeofaccess-mouse;easeofaccess-otheroptions;dateandtime;notifications" /f > NUL 2>&1
+::reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v SettingsPageVisibility /t REG_SZ /d "showonly:defaultapps;display;nightlight;sound;powersleep;batterysaver;batterysaver-usagedetails;batterysaver-settings;multitasking;about;bluetooth;connecteddevices;printers;mousetouchpad;devices-touchpad;typing;pen;autoplay;usb;network-status;network-cellular;network-wifi;network-wificalling;network-wifisettings;network-ethernet;network-dialup;netowrk-vpn;network-airplanemode;network-mobilehotspot;datausage;network-proxy;personalization-background;colors;lockscreen;themes;taskbar;easeofaccess-narrator;easeofaccess-magnifier;easeofaccess-highcontrast;easeofaccess-closedcaptioning;easeofaccess-keyboard;easeofaccess-mouse;easeofaccess-otheroptions;dateandtime;notifications" /f > NUL 2>&1
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v SettingsPageVisibility /t REG_SZ /d "hide:windowsupdate;home;workplace;signinoptions;emailandaccounts;backup;sync;family-group;findmydevice;privacy-genera;privacy-location;privacy-webcam;privacy-general;privacy-feedback;privacy-activityhistory;search-permissions;cortana-windowssearch;privacy-microphone;privacy-voiceactivation;privacy-notifications;privacy-accountinfo;privacy-contacts;privacy-calendar;privacy-phonecalls;privacy-callhistory;privacy-email;privacy-tasks;privacy-messaging;privacy-radios;privacy-customdevices;privacy-appdiagnostics;privacy-automaticfiledownloads;privacy-graphicscapturewithoutborder;privacy-graphicscaptureprogrammatic;windowsdefender;remotedesktop" /f > NUL 2>&1
+
+::New updates for Windows 11 October updates
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\EdgeUI" /v DisableMFUTracking /t REG_DWORD /d 1 /f > NUL 2>&1
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SubscribedContent-338393Enabled" /t REG_DWORD /d 0 /f
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SubscribedContent-353694Enabled" /t REG_DWORD /d 0 /f
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SubscribedContent-353696Enabled" /t REG_DWORD /d 0 /f
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\CPSS\Store\InkingAndTypingPersonalization" /v "Value" /t REG_DWORD /d 0 /f
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Personalization\Settings" /v "AcceptedPrivacyPolicy" /t REG_DWORD /d 0 /f
+reg add "HKEY_CURRENT_USER\Software\Microsoft\InputPersonalization" /v "RestrictImplicitInkCollection" /t REG_DWORD /d 1 /f
+reg add "HKEY_CURRENT_USER\Software\Microsoft\InputPersonalization\TrainedDataStore" /v "HarvestContacts" /t REG_DWORD /d 0 /f
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Notifications\Settings\Windows.SystemToast.StartupApp" /t REG_DWORD /d 0 /f
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v AllowInputPersonalization /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsAccessAppTelemetry /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsAccessDownloadsFolder /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsAccessBackgroundSpatialPerception /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsAccessCalendar /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsAccessCallHistory /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsAccessContacts /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsAccessEmail /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsAccessGazeInput /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsAccessCamera /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsAccessGraphicsCaptureProgrammatic /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsAccessGraphicsCaptureWithoutBorder /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsAccessHumanPresence /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsAccessLocation /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsAccessMessaging /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsAccessMicrophone /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsAccessMotion /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsAccessNotifications /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsAccessPhone /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsAccessRadios /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsAccessTasks /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsAccessTrustedDevices /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsActivateWithVoice /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsActivateWithVoiceAboveLock /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsGetDiagnosticInfo /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsRunInBackground /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsActivateWithVoice /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsSyncWithDevices /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsAccessAccountInfo /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsAccessMusicFolder /t REG_DWORD /d 2 /f > NUL 2>&1
+
 
 :: Disabling And Stopping Services
 cls
@@ -286,6 +329,9 @@ REG DELETE "HKEY_CLASSES_ROOT\SystemFileAssociations\.zip\CLSID" /f > NUL 2>&1
 reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v TaskbarMN /t REG_DWORD /d 0 /f > NUL 2>&1
 reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v TaskbarDA /t REG_DWORD /d 0 /f > NUL 2>&1
 
+::Disable Copilot
+reg add HKCU\Software\Policies\Microsoft\Windows\WindowsCopilot /v TurnOffWindowsCopilot /t REG_DWORD /d 1 /f
+
 :: Hybrid Sleep
 powercfg -h off
 
@@ -309,40 +355,8 @@ cls
 echo.
 echo  :: removing MicrosoftEdge
 echo.
-start c:\edge.bat
+::start c:\edge.bat
 cls
-
-:: Disabling One Drive
-cls
-echo.
-echo  :: Uninstalling OneDrive
-timeout /t 2 /nobreak > NUL
-
-set x86="%SYSTEMROOT%\System32\OneDriveSetup.exe"
-set x64="%SYSTEMROOT%\SysWOW64\OneDriveSetup.exe"
-
-taskkill /f /im OneDrive.exe > NUL 2>&1
-ping 127.0.0.1 -n 5 > NUL 2>&1
-
-if exist %x64% (
-%x64% /uninstall
-) else (
-%x86% /uninstall
-)
-ping 127.0.0.1 -n 8 > NUL 2>&1
-
-rd "%USERPROFILE%\OneDrive" /Q /S > NUL 2>&1
-rd "C:\OneDriveTemp" /Q /S > NUL 2>&1
-rd "%LOCALAPPDATA%\Microsoft\OneDrive" /Q /S > NUL 2>&1
-rd "%PROGRAMDATA%\Microsoft OneDrive" /Q /S > NUL 2>&1
-
-echo.
-echo Removing OneDrive from the Explorer Side Panel.
-REG DELETE "HKEY_CLASSES_ROOT\CLSID\{018D5C66-4533-4307-9B53-224DE2ED1FE6}" /f > NUL 2>&1
-REG DELETE "HKEY_CLASSES_ROOT\Wow6432Node\CLSID\{018D5C66-4533-4307-9B53-224DE2ED1FE6}" /f > NUL 2>&1
-
-#::Disable Users On Login Screen
-#reg add "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System" /v dontdisplaylastusername /t REG_DWORD /d 1 /f > NUL 2>&1
 
 ::Disable The Lock Screen
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Personalization" /v NoLockScreen /t REG_DWORD /d 1 /f > NUL 2>&1
@@ -363,7 +377,7 @@ cls
 	echo.
 	timeout /t 2 /nobreak > NUL
 
-	ping -n 1 archlinux.org -w 20000 >nul
+	::ping -n 1 archlinux.org -w 20000 >nul
 
 	if %errorlevel% == 0 (
 	echo Internet Connection Found! Proceeding...
@@ -394,7 +408,7 @@ cls
 		@powershell -NoProfile -ExecutionPolicy Bypass -Command "choco install -y --force --allow-empty-checksums imageglass --version=8.1.4.18"
 		@powershell -NoProfile -ExecutionPolicy Bypass -Command "choco install -y --force --allow-empty-checksums vcredist-all"
 		@powershell -NoProfile -ExecutionPolicy Bypass -Command "choco install -y --force --allow-empty-checksums directx"
-		@powershell -NoProfile -ExecutionPolicy Bypass -Command "choco install -y --force --allow-empty-checksums notepadplusplus"
+::		@powershell -NoProfile -ExecutionPolicy Bypass -Command "choco install -y --force --allow-empty-checksums notepadplusplus"
 		@powershell -NoProfile -ExecutionPolicy Bypass -Command "choco install -y --force --allow-empty-checksums psexec"
 
 :: reg add "HKEY_CLASSES_ROOT\Directory\shell\Open with MPV" /v icon /t REG_SZ /d "C:\\ProgramData\\chocolatey\\lib\\mpv.install\\tools\\mpv-document.ico" /f
@@ -402,7 +416,26 @@ cls
 
 :: This might fix problem down the road aka the mouse won't click on objects
 powercfg /h off
+cls
 goto :menu
+
+:appx
+cls
+cd /.
+mkdir /s /q apps
+cls
+echo copy your apps to c:\apps
+pause
+echo.
+echo This will install a store app look for the app at
+echo "apps.microsoft.com" copy link to app
+echo past link in search at "store.rg-adguard.net"
+echo paste download link here.
+cd /apps
+ren *.appx
+	@powershell Add-Appxpackage *.appx
+cls
+goto menu
 
 :store
 echo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -412,6 +445,12 @@ echo !!               bloat apps                    !!
 echo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 taskkill /f /im explorer.exe
 cls
+echo .
+echo -Disabling Copilot
+reg add HKCU\Software\Policies\Microsoft\Windows\WindowsCopilot /v TurnOffWindowsCopilot /t REG_DWORD /d 1 /f
+echo .
+cls
+
 echo .
 echo :: Changing Registry Settings
 reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\OneSyncSvc" /v Start /t REG_DWORD /d 4 /f > NUL 2>&1
@@ -460,6 +499,74 @@ REG DELETE "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\ContentD
 REG DELETE "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager\Renderers" /f > NUL 2>&1
 REG DELETE "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager\Subscriptions" /f > NUL 2>&1
 REG DELETE "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager\Health" /f > NUL 2>&1
+::New updates for Windows 11 October updates
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\EdgeUI" /v DisableMFUTracking /t REG_DWORD /d 1 /f > NUL 2>&1
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SubscribedContent-338393Enabled" /t REG_DWORD /d 0 /f
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SubscribedContent-353694Enabled" /t REG_DWORD /d 0 /f
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SubscribedContent-353696Enabled" /t REG_DWORD /d 0 /f
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\CPSS\Store\InkingAndTypingPersonalization" /v "Value" /t REG_DWORD /d 0 /f
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Personalization\Settings" /v "AcceptedPrivacyPolicy" /t REG_DWORD /d 0 /f
+reg add "HKEY_CURRENT_USER\Software\Microsoft\InputPersonalization" /v "RestrictImplicitInkCollection" /t REG_DWORD /d 1 /f
+reg add "HKEY_CURRENT_USER\Software\Microsoft\InputPersonalization\TrainedDataStore" /v "HarvestContacts" /t REG_DWORD /d 0 /f
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Notifications\Settings\Windows.SystemToast.StartupApp" /t REG_DWORD /d 0 /f
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v AllowInputPersonalization /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsAccessAppTelemetry /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsAccessDownloadsFolder /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsAccessBackgroundSpatialPerception /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsAccessCalendar /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsAccessCallHistory /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsAccessContacts /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsAccessEmail /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsAccessGazeInput /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsAccessCamera /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsAccessGraphicsCaptureProgrammatic /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsAccessGraphicsCaptureWithoutBorder /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsAccessHumanPresence /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsAccessLocation /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsAccessMessaging /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsAccessMicrophone /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsAccessMotion /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsAccessNotifications /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsAccessPhone /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsAccessRadios /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsAccessTasks /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsAccessTrustedDevices /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsActivateWithVoice /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsActivateWithVoiceAboveLock /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsGetDiagnosticInfo /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsRunInBackground /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsActivateWithVoice /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsSyncWithDevices /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsAccessAccountInfo /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsAccessMusicFolder /t REG_DWORD /d 2 /f > NUL 2>&1
+cls
+:: Registry Edits
+echo "" > C:\ProgramData\Microsoft\Diagnosis\ETLLogs\AutoLogger\AutoLogger-Diagtrack-Listener.etl
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\WMI\AutoLogger\AutoLogger-Diagtrack-Listener" /v "Start" /t REG_DWORD /d 0 /f > NUL 2>&1
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\WMI\AutoLogger\SQMLogger" /v "Start" /t REG_DWORD /d 0 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Config" /v DownloadMode /t REG_DWORD /d 0 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\SettingSync" /v DisableSettingSync /t REG_DWORD /d 2 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\SettingSync" /v DisableSettingSyncUserOverride /t REG_DWORD /d 1 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AdvertisingInfo" /v DisabledByGroupPolicy /t REG_DWORD /d 1 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection" /v AllowTelemetry /t REG_DWORD /d 0 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\EnhancedStorageDevices" /v TCGSecurityActivationDisabled /t REG_DWORD /d 0 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\OneDrive" /v DisableFileSyncNGSC /t REG_DWORD /d 1 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\safer\codeidentifiers" /v authenticodeenabled /t REG_DWORD /d 0 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting" /v DontSendAdditionalData /t REG_DWORD /d 1 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v AllowCortana /t REG_DWORD /d 0 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v DisableWebSearch /t REG_DWORD /d 1 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v ConnectedSearchUseWeb /t REG_DWORD /d 0 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v AllowIndexingEncryptedStoresOrItems /t REG_DWORD /d 0 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v AllowSearchToUseLocation /t REG_DWORD /d 0 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v AlwaysUseAutoLangDetection /t REG_DWORD /d 0 /f > NUL 2>&1
+reg add "HKLM\Software\Microsoft\PolicyManager\default\WiFi\AllowWiFiHotSpotReporting" /v value /t REG_DWORD /d 0 /f > NUL 2>&1
+reg add "HKLM\Software\Microsoft\PolicyManager\default\WiFi\AllowAutoConnectToWiFiSenseHotspots" /v value /t REG_DWORD /d 0 /f > NUL 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo" /v Enabled /t REG_DWORD /d 0 /f > NUL 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\AppHost" /v EnableWebContentEvaluation /t REG_DWORD /d 0 /f > NUL 2>&1
+reg add "HKCU\Control Panel\International\User Profile" /v HttpAcceptLanguageOptOut /t REG_DWORD /d 1 /f > NUL 2>&1
+reg add "HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows\Explorer" /v DisableNotificationCenter /t REG_DWORD /d 1 /f > NUL 2>&1
+reg add "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\ImmersiveShell" /v UseActionCenterExperience /t REG_DWORD /d 0 /f > NUL 2>&1
+reg add "HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v HideSCAHealth /t REG_DWORD /d 0x1 /f > NUL 2>&1
 cls
 echo .
 echo  :: Removing AppXPackages, the ModernUI Apps, including Cortana
@@ -475,16 +582,16 @@ PowerShell -Command "Get-AppxPackage *Getstarted* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *MicrosoftOfficeHub* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *Note* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *Paint* | Remove-AppxPackage"
-PowerShell -Command "Get-AppxPackage *people* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *people_* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *Phone* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *Photos* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *PowerAutomate* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *QuickAssist* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *ScreenSketch* | Remove-AppxPackage"
-PowerShell -Command "Get-AppxPackage *SecHealthUI* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *Solitaire* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *SoundRecorder* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *StickyNotes* | Remove-AppxPackage"
+::You want any Windows app like Roblox or Minecraft you will need to comment out TCUI and the app you want like ::PowerShell -Command "Get-AppxPackage *TCUI* | Remove-AppxPackage
 PowerShell -Command "Get-AppxPackage *TCUI* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *Teams* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *Todos* | Remove-AppxPackage"
@@ -495,10 +602,65 @@ PowerShell -Command "Get-AppxPackage *WindowsPhone* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *WindowsSoundRecorder* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *WindowsTerminal* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *xbox.* | Remove-AppxPackage"
-PowerShell -Command "Get-AppxPackage *xboxG* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *xboxGami* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *xboxS* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *zune* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *AppInstaller* | Remove-AppxPackage"
+::cls
+::echo.
+::echo -Would you like to remove Windows Store now if your not installing purchased store app you don´t need it
+::	echo  :: Type "yes" or "no"
+::	echo.
+::	set /P menu=
+::		if %menu1%==yes GOTO rs
+::		if %menu1%==no GOTO con
+::cls
+::rs
+::echo removing Windows Store
+::PowerShell -Command "Get-AppxPackage *Store* | Remove-AppxPackage"
+::cls
+::goto con
+::con
+:: Disabling One Drive
+cls
+echo.
+echo  :: Uninstalling OneDrive
+timeout /t 2 /nobreak > NUL
+
+set x86="%SYSTEMROOT%\System32\OneDriveSetup.exe"
+set x64="%SYSTEMROOT%\SysWOW64\OneDriveSetup.exe"
+
+taskkill /f /im OneDrive.exe > NUL 2>&1
+ping 127.0.0.1 -n 5 > NUL 2>&1
+
+if exist %x64% (
+%x64% /uninstall
+) else (
+%x86% /uninstall
+)
+ping 127.0.0.1 -n 8 > NUL 2>&1
+
+rd "%USERPROFILE%\OneDrive" /Q /S > NUL 2>&1
+rd "C:\OneDriveTemp" /Q /S > NUL 2>&1
+rd "%LOCALAPPDATA%\Microsoft\OneDrive" /Q /S > NUL 2>&1
+rd "%PROGRAMDATA%\Microsoft OneDrive" /Q /S > NUL 2>&1
+
+echo.
+echo Removing OneDrive from the Explorer Side Panel.
+REG DELETE "HKEY_CLASSES_ROOT\CLSID\{018D5C66-4533-4307-9B53-224DE2ED1FE6}" /f > NUL 2>&1
+REG DELETE "HKEY_CLASSES_ROOT\Wow6432Node\CLSID\{018D5C66-4533-4307-9B53-224DE2ED1FE6}" /f > NUL 2>&1
+
+#::Disable Users On Login Screen
+#reg add "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System" /v dontdisplaylastusername /t REG_DWORD /d 1 /f > NUL 2>&1
+
+:: removing MicrosoftEdge From https://github.com/ChrisTitusTech/winutil
+cls
+echo.
+echo  :: removing MicrosoftEdge
+echo.
+start c:\edge.bat
+pause
+pause
 CLS
 goto reboot
 
