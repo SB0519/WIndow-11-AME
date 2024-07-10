@@ -43,6 +43,16 @@ title_bar
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 
+#Check for previos AME file
+if [ -d $FILE ]; then
+	now=$(date +"%Y.%m.%d.%H.%M")
+	mv AME_Backup.tar AME_Backup_$now.tar	
+else
+  echo "$FILE' not found, continuing"
+fi
+rm remove.sh
+
+
 # start AME process
 cat > AME_Start.sh <<'endmsg'
 title_bar
@@ -475,24 +485,7 @@ echo "0.0.0.0       20.99.184.37" >> "Windows/System32/drivers/etc/hosts"
 echo "0.0.0.0       20.99.133.109" >> "Windows/System32/drivers/etc/hosts"
 echo "0.0.0.0       20.99.184.37" >> "Windows/System32/drivers/etc/hosts"
 
-#Check for previos AME file
-cat > ame_chk.sh <<'endmsg'
-#!/bin/bash
-if [ -d $FILE ]; then
-	now=$(date +"%Y.%m.%d.%H.%M")
-	mv AME_Backup.tar AME_Backup_$now.tar	
-else
-  echo "$FILE' not found, continuing"
-fi
-rm remove.sh
-rm restore.sh
-endmsg
-chmod +x ame_chk.sh
-
 title_bar
-echo "Checking for previos AME runs"
-./ame_chk.sh
-echo "Done."
 echo "Creating Directories"
 ./mkdirs.sh
 echo "Done."
